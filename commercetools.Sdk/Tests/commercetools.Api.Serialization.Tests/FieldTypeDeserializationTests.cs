@@ -21,11 +21,11 @@ namespace commercetools.Api.Serialization.Tests
         }
 
         [Fact]
-        public void DeserializeStringFieldType()
+        public async void DeserializeStringFieldType()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string serialized = File.ReadAllText("Resources/FieldTypes/String.json");
-            var deserialized = serializerService.Deserialize<IType>(serialized);
+            var serialized = File.OpenRead("Resources/FieldTypes/String.json");
+            var deserialized = await serializerService.Deserialize<IType>(serialized);
             Assert.NotNull(deserialized.ResourceTypeIdsAsEnum);
             Assert.Equal(2,deserialized.ResourceTypeIdsAsEnum.Count);
             Assert.Equal(ResourceTypeId.Category, deserialized.ResourceTypeIdsAsEnum[0]);

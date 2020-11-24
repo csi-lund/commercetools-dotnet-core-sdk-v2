@@ -12,8 +12,9 @@ namespace commercetools.Base.Serialization
         }
         public static T ToObject<T>(this JsonElement element, ISerializerService serializerService)
         {
-            var json = element.GetRawText();
-            return serializerService.Deserialize<T>(json);
+            //var json = element.GetRawText();
+            //return serializerService.Deserialize<T>(json);
+            throw new NotImplementedException();
         }
         public static object ToObject(this JsonElement element, Type returnType, ISerializerService serializerService)
         {

@@ -17,20 +17,21 @@ namespace commercetools.Api.Serialization.Tests
         }
 
         [Fact]
-        public void MoneyDeserialization()
+        public async void MoneyDeserialization()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
             string serialized = @"{
                 ""currencyCode"": ""EUR"",
                 ""centAmount"": 123456
             }";
-            var deserialized = serializerService.Deserialize<IMoney>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var deserialized = await serializerService.Deserialize<IMoney>(stream);
             Assert.IsType<Money>(deserialized);
         }
 
         
         [Fact]
-        public void MoneyWithTypeDeserialization()
+        public async void MoneyWithTypeDeserialization()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
             string serialized = @"{
@@ -39,7 +40,8 @@ namespace commercetools.Api.Serialization.Tests
                 ""centAmount"": 123456,
                 ""fractionDigits"": 2
             }";
-            var deserialized = serializerService.Deserialize<ITypedMoney>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var deserialized = await serializerService.Deserialize<ITypedMoney>(stream);
             Assert.IsType<CentPrecisionMoney>(deserialized);
             Assert.Equal("EUR", deserialized.CurrencyCode);
             Assert.Equal(MoneyType.CentPrecision, deserialized.TypeAsEnum);
@@ -48,7 +50,7 @@ namespace commercetools.Api.Serialization.Tests
         }
 
         [Fact]
-        public void HighPrecisionMoneyDeserialization()
+        public async void HighPrecisionMoneyDeserialization()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
             string serialized = @"{
@@ -58,7 +60,8 @@ namespace commercetools.Api.Serialization.Tests
                 ""preciseAmount"": 12345678,
                 ""fractionDigits"": 4
             }";
-            var deserialized = serializerService.Deserialize<ITypedMoney>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var deserialized = await serializerService.Deserialize<ITypedMoney>(stream);
             var highPrecisionMoney = deserialized as HighPrecisionMoney;
             Assert.NotNull(highPrecisionMoney);
             Assert.Equal("EUR", highPrecisionMoney.CurrencyCode);
@@ -95,7 +98,7 @@ namespace commercetools.Api.Serialization.Tests
         }
 
         [Fact]
-        public void DeserializeInvalidMoney()
+        public async void DeserializeInvalidMoney()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
             string serialized = @"{
@@ -103,7 +106,8 @@ namespace commercetools.Api.Serialization.Tests
                 ""centAmount"": 123456
             }";
 
-            Assert.Throws<JsonException>(() => serializerService.Deserialize<ITypedMoney>(serialized));
+            var stream = TestingUtility.StreamFromString(serialized);
+            await Assert.ThrowsAsync<JsonException>(() => serializerService.Deserialize<ITypedMoney>(stream));
         }
     }
 }

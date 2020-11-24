@@ -15,20 +15,20 @@ namespace commercetools.Api.Serialization.Tests
         }
 
         [Fact]
-        public void CustomFieldsString()
+        public async void CustomFieldsString()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string serialized = File.ReadAllText("Resources/CustomFields/String.json");
-            Category deserialized = serializerService.Deserialize<Category>(serialized);
+            var serialized = File.OpenRead("Resources/CustomFields/String.json");
+            var deserialized =  await serializerService.Deserialize<Category>(serialized);
             Assert.IsType<string>(deserialized.Custom.Fields["string"]);
         }
 
         [Fact]
-        public void CustomFieldsNumber()
+        public async void CustomFieldsNumber()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string serialized = File.ReadAllText("Resources/CustomFields/Number.json");
-            Category deserialized = serializerService.Deserialize<Category>(serialized);
+            var serialized = File.OpenRead("Resources/CustomFields/Number.json");
+            var deserialized = await serializerService.Deserialize<Category>(serialized);
             Assert.IsType<double>(deserialized.Custom.Fields["number"]);
         }
 /*

@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 using commercetools.Base.Serialization;
 
@@ -21,6 +22,6 @@ namespace commercetools.Base.Client
         
         Task<T> ExecuteAsync<T>(HttpRequestMessage requestMessage);
         
-        Task<string> ExecuteAsJsonAsync(HttpRequestMessage requestMessage);
+        Task<Stream> ExecuteAsJsonAsync(HttpRequestMessage requestMessage);
     }
 }

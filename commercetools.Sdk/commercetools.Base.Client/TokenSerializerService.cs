@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace commercetools.Base.Client
 {
@@ -15,9 +17,9 @@ namespace commercetools.Base.Client
             };
         }
 
-        public T Deserialize<T>(string input)
+        public async Task<T> Deserialize<T>(Stream input)
         {
-            return JsonSerializer.Deserialize<T>(input, jsonSerializerOptions);
+            return await JsonSerializer.DeserializeAsync<T>(input, jsonSerializerOptions);
         }
 
         public object Deserialize(Type returnType, string input)

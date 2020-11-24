@@ -91,10 +91,10 @@ namespace commercetools.Base.Client.Tokens
         {
             var client = this.HttpClient;
             var result = await client.SendAsync(requestMessage).ConfigureAwait(false);
-            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var content = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
             if (result.IsSuccessStatusCode)
             {
-                return this.serializerService.Deserialize<Token>(content);
+                return await this.serializerService.Deserialize<Token>(content);
             }
 
             var generalClientException =

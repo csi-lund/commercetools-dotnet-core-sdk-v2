@@ -1,3 +1,4 @@
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using commercetools.Base.Serialization;
@@ -24,7 +25,7 @@ namespace commercetools.Sdk.V2Compat
             return await client.ExecuteAsync(new HttpRequestCommand<T>(requestMessage));
         }
 
-        public Task<string> ExecuteAsJsonAsync(HttpRequestMessage requestMessage)
+        public Task<Stream> ExecuteAsJsonAsync(HttpRequestMessage requestMessage)
         {
             throw new System.NotImplementedException();
         }

@@ -9,17 +9,17 @@ namespace commercetools.Api.Tests
     public class ProjectTests
     {
         [Fact]
-        public void TestProjectDeserialization()
+        public async void TestProjectDeserialization()
         {
             var s = new ServiceCollection();
             s.UseCommercetoolsApiSerialization();
             var p = s.BuildServiceProvider();
             //arrange
-            var projectResponse = File.ReadAllText("Resources/project.json");
+            var projectResponse = File.OpenRead("Resources/project.json");
             var serializerService = p.GetService<SerializerService>();
 
             //act
-            var project = serializerService.Deserialize<Project>(projectResponse);
+            var project = await serializerService.Deserialize<Project>(projectResponse);
 
             //assert
             Assert.NotNull(project);

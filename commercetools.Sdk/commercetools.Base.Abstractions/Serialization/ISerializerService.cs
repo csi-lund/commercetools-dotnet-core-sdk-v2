@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace commercetools.Base.Serialization
 {
@@ -6,7 +8,7 @@ namespace commercetools.Base.Serialization
     {
         string Serialize<T>(T input);
 
-        T Deserialize<T>(string input);
+        Task<T> Deserialize<T>(Stream input);
         
         object Deserialize(Type returnType,string input);
     }

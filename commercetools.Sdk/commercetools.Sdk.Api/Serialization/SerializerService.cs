@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using commercetools.Api.Models.Types;
 using commercetools.Api.Serialization.JsonConverters;
 
@@ -34,9 +36,9 @@ namespace commercetools.Api.Serialization
                 _serializerOptions.PropertyNamingPolicy, _serializerOptions));
         }
 
-        public T Deserialize<T>(string input)
+        public async Task<T> Deserialize<T>(Stream input)
         {
-            return JsonSerializer.Deserialize<T>(input, _serializerOptions);
+            return await JsonSerializer.DeserializeAsync<T>(input, _serializerOptions);
         }
         
         public object Deserialize(Type returnType,string input)

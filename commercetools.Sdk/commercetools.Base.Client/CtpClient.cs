@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -37,13 +38,13 @@ namespace commercetools.Base.Client
         public async Task<T> ExecuteAsync<T>(HttpRequestMessage requestMessage)
         {
             var content = await ExecuteAsJsonAsync(requestMessage);
-            return this.SerializerService.Deserialize<T>(content);   
+            return await this.SerializerService.Deserialize<T>(content);   
         }
         
-        public async Task<string> ExecuteAsJsonAsync(HttpRequestMessage requestMessage)
+        public async Task<Stream> ExecuteAsJsonAsync(HttpRequestMessage requestMessage)
         {
             var result = await this.MiddlewareStack.SendAsync(requestMessage, CancellationToken.None).ConfigureAwait(false);
-            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var content = await result.Content.ReadAsStreamAsync().ConfigureAwait(false);
             return content;
         }
     }

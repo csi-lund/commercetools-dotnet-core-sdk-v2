@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.Json;
 using commercetools.Api.Models.Categories;
 using commercetools.Api.Models.Common;
@@ -31,14 +32,14 @@ namespace commercetools.Api.Serialization.Tests
         }
         
         [Fact]
-        public void TestProjectDeserialization()
+        public async void TestProjectDeserialization()
         {
             //arrange
-            var projectResponse = File.ReadAllText("Resources/project.json");
+            var projectResponse = File.OpenRead("Resources/project.json");
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
             //act
-            var project = serializerService.Deserialize<IProject>(projectResponse);
+            var project = await serializerService.Deserialize<IProject>(projectResponse);
 
             //assert
             Assert.NotNull(project);
@@ -47,11 +48,11 @@ namespace commercetools.Api.Serialization.Tests
         }
         
         [Fact]
-        public void DeserializeLocalizedString()
+        public async void DeserializeLocalizedString()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-
-            string serialized = @"
+            
+            var serialized = @"
                 {
                     ""name"": {
                         ""en"": ""name-en"",
@@ -60,20 +61,21 @@ namespace commercetools.Api.Serialization.Tests
                 }
             ";
 
-            var product = serializerService.Deserialize<ProductProjection>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var product = await serializerService.Deserialize<ProductProjection>(stream);
 
             Assert.Equal("name-en", product.Name["en"]);
             Assert.Equal("name-en-us", product.Name["en-US"]);
         }
         
         [Fact]
-        public void DeserializeShippingMethod()
+        public async void DeserializeShippingMethod()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
-            var serialized = File.ReadAllText("Resources/ShippingMethods/ShippingMethod.json");
+            var serialized = File.OpenRead("Resources/ShippingMethods/ShippingMethod.json");
 
-            var shippingMethod = serializerService.Deserialize<ShippingMethod>(serialized);
+            var shippingMethod = await serializerService.Deserialize<ShippingMethod>(serialized);
 
             Assert.NotNull(shippingMethod);
             Assert.NotNull(shippingMethod.TaxCategory);
@@ -84,12 +86,12 @@ namespace commercetools.Api.Serialization.Tests
         }
         
         [Fact]
-        public void DeserializeShippingMethods()
+        public async void DeserializeShippingMethods()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
-            var serialized = File.ReadAllText("Resources/ShippingMethods/ShippingMethodsAsPageQueryResult.json");
-            var shippingMethodsResult = serializerService.Deserialize<ShippingMethodPagedQueryResponse>(serialized);
+            var serialized = File.OpenRead("Resources/ShippingMethods/ShippingMethodsAsPageQueryResult.json");
+            var shippingMethodsResult = await serializerService.Deserialize<ShippingMethodPagedQueryResponse>(serialized);
 
             Assert.Equal(2, shippingMethodsResult.Count);
             Assert.Equal(20, shippingMethodsResult.Limit);
@@ -99,7 +101,7 @@ namespace commercetools.Api.Serialization.Tests
         }
         
         [Fact]
-        public void DeserializeKnowEnum()
+        public async void DeserializeKnowEnum()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
@@ -109,14 +111,15 @@ namespace commercetools.Api.Serialization.Tests
                 }
             ";
 
-            var state = serializerService.Deserialize<State>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var state =  await serializerService.Deserialize<State>(stream);
 
             Assert.Equal("OrderState", state.Type);
             Assert.Equal(StateTypeEnum.OrderState, state.TypeAsEnum);
         }
         
         [Fact]
-        public void DeserializeUnKnowEnum()
+        public async void DeserializeUnKnowEnum()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
@@ -126,41 +129,42 @@ namespace commercetools.Api.Serialization.Tests
                 }
             ";
 
-            var state = serializerService.Deserialize<State>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var state = await serializerService.Deserialize<State>(stream);
 
             Assert.Equal("Unknown", state.Type);
             Assert.Throws<ArgumentException>(() => state.TypeAsEnum);
         }
         
         [Fact]
-        public void DeserializeOrder()
+        public async void DeserializeOrder()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string orderSerialized = File.ReadAllText("Resources/Orders/order.json");
+            var orderSerialized = File.OpenRead("Resources/Orders/order.json");
             
-            var order = serializerService.Deserialize<Order>(orderSerialized);
+            var order = await serializerService.Deserialize<Order>(orderSerialized);
             Assert.NotNull(order);
             Assert.Equal(PaymentState.Pending,order.PaymentStateAsEnum);
             Assert.Null(order.ShipmentState);
         }
 
         [Fact]
-        public void ReferenceDeserialization()
+        public async void ReferenceDeserialization()
         {
             //Deserialize 2 of references to list of references with the correct instance type based on Type Id
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string serialized = File.ReadAllText("Resources/Types/References.json");
-            var references = serializerService.Deserialize<List<IReference>>(serialized);
+            var serialized = File.OpenRead("Resources/Types/References.json");
+            var references = await serializerService.Deserialize<List<IReference>>(serialized);
             Assert.IsType<CategoryReference>(references[0]);
             Assert.IsType<ProductReference>(references[1]);
 
-            string serializedRev = File.ReadAllText("Resources/Types/Review.json");
-            Review review = serializerService.Deserialize<Review>(serializedRev);
+            var serializedRev = File.OpenRead("Resources/Types/Review.json");
+            var review = await serializerService.Deserialize<Review>(serializedRev);
             Assert.IsType<JsonElement>(review.Target);
         }
 
         [Fact]
-        public void DeserializeInvalidReference()
+        public async void DeserializeInvalidReference()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
             string serialized = @"{
@@ -168,21 +172,22 @@ namespace commercetools.Api.Serialization.Tests
                 ""id"": ""123456""
             }";
 
-            Assert.Throws<JsonException>(() => serializerService.Deserialize<IReference>(serialized));
+            var stream = TestingUtility.StreamFromString(serialized);
+            await Assert.ThrowsAsync<JsonException>(() => serializerService.Deserialize<IReference>(stream));
         }
 
 
         [Fact]
-        public void ResourceIdentifiersDeserialization()
+        public async void ResourceIdentifiersDeserialization()
         {
             //Deserialize 2 of resourceIdentifiers to list of resourceIdentifiers with the correct instance type based on Type Id
             ISerializerService serializerService = this.serializationFixture.SerializerService;
-            string serialized = File.ReadAllText("Resources/Types/References.json");
-            var resourceIdentifiers = serializerService.Deserialize<List<IResourceIdentifier>>(serialized);
+            var serialized = File.OpenRead("Resources/Types/References.json");
+            var resourceIdentifiers = await serializerService.Deserialize<List<IResourceIdentifier>>(serialized);
             Assert.IsType<CategoryResourceIdentifier>(resourceIdentifiers[0]);
             Assert.IsType<ProductResourceIdentifier>(resourceIdentifiers[1]);
-            string serializedRev = File.ReadAllText("Resources/Types/Review.json");
-            Review review = serializerService.Deserialize<Review>(serializedRev);
+            var serializedRev = File.OpenRead("Resources/Types/Review.json");
+            var review = await serializerService.Deserialize<Review>(serializedRev);
             Assert.IsType<JsonElement>(review.Target);
 
         }
@@ -266,7 +271,7 @@ namespace commercetools.Api.Serialization.Tests
         }
         
         [Fact]
-        public void DeserializeCustomField()
+        public async void DeserializeCustomField()
         {
             ISerializerService serializerService = this.serializationFixture.SerializerService;
 
@@ -279,7 +284,8 @@ namespace commercetools.Api.Serialization.Tests
                 }
             ";
 
-            var customFields = serializerService.Deserialize<ICustomFields>(serialized);
+            var stream = TestingUtility.StreamFromString(serialized);
+            var customFields = await serializerService.Deserialize<ICustomFields>(stream);
 
             Assert.Equal("bar", customFields.Fields["foo"]);
             Assert.Equal("Bars", customFields.Fields["Foos"]);
