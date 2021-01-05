@@ -10,6 +10,8 @@ namespace commercetools.Base.Serialization
 
         Task<T> Deserialize<T>(Stream input);
         
-        object Deserialize(Type returnType,string input);
+        T Deserialize<T>(string input);
+        
+        object Deserialize(Type returnType, string input);
     }
 }

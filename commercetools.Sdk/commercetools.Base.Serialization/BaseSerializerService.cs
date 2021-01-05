@@ -32,7 +32,12 @@ namespace commercetools.Base.Serialization
             return await JsonSerializer.DeserializeAsync<T>(input, _serializerOptions);
         }
         
-        public object Deserialize(Type returnType,string input)
+        public T Deserialize<T>(string input)
+        {
+            return JsonSerializer.Deserialize<T>(input, _serializerOptions);
+        }
+        
+        public object Deserialize(Type returnType, string input)
         {
             return JsonSerializer.Deserialize(input, returnType, _serializerOptions);
         }

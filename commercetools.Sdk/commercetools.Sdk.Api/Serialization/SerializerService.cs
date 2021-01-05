@@ -41,6 +41,11 @@ namespace commercetools.Api.Serialization
             return await JsonSerializer.DeserializeAsync<T>(input, _serializerOptions);
         }
         
+        public T Deserialize<T>(string input)
+        {
+            return JsonSerializer.Deserialize<T>(input, _serializerOptions);
+        }
+        
         public object Deserialize(Type returnType,string input)
         {
             return JsonSerializer.Deserialize(input, returnType, _serializerOptions);

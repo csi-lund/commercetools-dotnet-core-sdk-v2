@@ -21,6 +21,11 @@ namespace commercetools.Base.Client
         {
             return await JsonSerializer.DeserializeAsync<T>(input, jsonSerializerOptions);
         }
+        
+        public T Deserialize<T>(string input)
+        {
+            return JsonSerializer.Deserialize<T>(input, jsonSerializerOptions);
+        }
 
         public object Deserialize(Type returnType, string input)
         {
