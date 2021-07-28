@@ -32,18 +32,19 @@ namespace commercetools.Api.IntegrationTests.Products
         {
             await ProductTypesFixture.WithProductType(_client, async productType =>
             {
+                var randomInt = TestingUtility.RandomInt();
                 var draft = new ProductDraft()
                 {
                     ProductType = new ProductTypeResourceIdentifier() { Id = productType.Id },
                     Name = new LocalizedString()
                     {
-                        {"en", $"Name"},
-                        {"de", $"Name_de"}
+                        {"en", $"Name_{randomInt}"},
+                        {"de", $"Name_de_{randomInt}"}
                     },
                     Slug = new LocalizedString()
                     {
-                        {"en", $"Name"},
-                        {"de", $"Name_de"}
+                        {"en", $"slug_{randomInt}"},
+                        {"de", $"slug_de_{randomInt}"}
                     },
                     Publish = true
                 };
