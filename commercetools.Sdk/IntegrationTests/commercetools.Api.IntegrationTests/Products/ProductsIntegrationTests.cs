@@ -1,7 +1,12 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using commercetools.Api.Client;
+using commercetools.Api.IntegrationTests.ProductTypes;
+using commercetools.Api.Models.Common;
+using commercetools.Api.Models.Products;
+using commercetools.Api.Models.ProductTypes;
 using commercetools.Base.Client;
 using commercetools.Sdk.Api.Extensions;
 using Xunit;
@@ -22,6 +27,41 @@ namespace commercetools.Api.IntegrationTests.Products
             this._projectKey = clientConfiguration.ProjectKey;
         }
 
+        [Fact]
+        public async Task CreateUpdateDeleteProduct()
+        {
+            await ProductTypesFixture.WithProductType(_client, async productType =>
+            {
+                var draft = new ProductDraft()
+                {
+                    ProductType = new ProductTypeResourceIdentifier() { Id = productType.Id },
+                    Name = new LocalizedString()
+                    {
+                        {"en", $"Name"},
+                        {"de", $"Name_de"}
+                    },
+                    Slug = new LocalizedString()
+                    {
+                        {"en", $"Name"},
+                        {"de", $"Name_de"}
+                    },
+                    Publish = true
+                };
+                var product = await _client.WithApi().WithProjectKey(_projectKey).Products().Post(draft).ExecuteAsync();
+                Assert.NotNull(product.Id);
+                
+                var update = new ProductUpdate() { Version = product.Version, Actions = new List<IProductUpdateAction>()};
+                update.Actions.Add(new ProductUnpublishAction());
+
+                var updatedProduct = await _client.WithApi().WithProjectKey(_projectKey).Products().WithId(product.Id).Post(update).ExecuteAsync();
+                Assert.NotEqual(product.Version, updatedProduct.Version);
+
+                var deletedProduct = await _client.WithApi().WithProjectKey(_projectKey).Products().WithId(product.Id)
+                    .Delete().WithVersion(updatedProduct.Version).ExecuteAsync();
+                Assert.Equal(product.Id, deletedProduct.Id);
+            });
+        }
+        
         [Fact]
         public async Task UploadProductImage()
         {
