@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.Projects
 {
-   public class ByProjectKeyTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Get()
@@ -27,7 +29,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Projects
                    "Get",
                    "/test_projectKey",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Post(null)
@@ -36,6 +38,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Projects
                    "/test_projectKey",
                }
        };
+        }
     }
-   }
 }

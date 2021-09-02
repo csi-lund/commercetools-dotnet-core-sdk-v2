@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
 {
-   public class ByProjectKeyZonesTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyZonesTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Get",
                    "/test_projectKey/zones",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "Post",
                    "/test_projectKey/zones?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Zones()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Zones
                    "/test_projectKey/zones",
                }
        };
+        }
     }
-   }
 }

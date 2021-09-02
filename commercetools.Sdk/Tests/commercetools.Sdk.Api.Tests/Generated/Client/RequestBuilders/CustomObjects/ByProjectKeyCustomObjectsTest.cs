@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
 {
-   public class ByProjectKeyCustomObjectsTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyCustomObjectsTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Get",
                    "/test_projectKey/custom-objects",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "Post",
                    "/test_projectKey/custom-objects?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomObjects()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomObjects
                    "/test_projectKey/custom-objects",
                }
        };
+        }
     }
-   }
 }

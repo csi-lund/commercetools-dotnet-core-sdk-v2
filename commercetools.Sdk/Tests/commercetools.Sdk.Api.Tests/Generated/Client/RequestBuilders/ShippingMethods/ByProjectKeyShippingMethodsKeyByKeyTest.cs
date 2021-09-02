@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
 {
-   public class ByProjectKeyShippingMethodsKeyByKeyTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyShippingMethodsKeyByKeyTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -30,7 +32,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Get",
                    "/test_projectKey/shipping-methods/key=test_key?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -40,7 +42,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Get",
                    "/test_projectKey/shipping-methods/key=test_key",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -51,7 +53,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Post",
                    "/test_projectKey/shipping-methods/key=test_key?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -61,7 +63,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Post",
                    "/test_projectKey/shipping-methods/key=test_key",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -72,7 +74,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Delete",
                    "/test_projectKey/shipping-methods/key=test_key?version=2",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -83,7 +85,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "Delete",
                    "/test_projectKey/shipping-methods/key=test_key?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .ShippingMethods()
@@ -94,6 +96,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.ShippingMethods
                    "/test_projectKey/shipping-methods/key=test_key",
                }
        };
+        }
     }
-   }
 }

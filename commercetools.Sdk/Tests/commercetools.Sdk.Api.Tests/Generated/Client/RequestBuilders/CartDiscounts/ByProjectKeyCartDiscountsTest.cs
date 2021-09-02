@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
 {
-   public class ByProjectKeyCartDiscountsTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyCartDiscountsTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Get",
                    "/test_projectKey/cart-discounts",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "Post",
                    "/test_projectKey/cart-discounts?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CartDiscounts()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CartDiscounts
                    "/test_projectKey/cart-discounts",
                }
        };
+        }
     }
-   }
 }

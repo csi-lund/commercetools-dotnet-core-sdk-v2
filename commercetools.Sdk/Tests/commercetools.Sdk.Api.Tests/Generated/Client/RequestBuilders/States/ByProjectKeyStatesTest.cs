@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.States
 {
-   public class ByProjectKeyStatesTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyStatesTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Get",
                    "/test_projectKey/states",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "Post",
                    "/test_projectKey/states?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .States()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.States
                    "/test_projectKey/states",
                }
        };
+        }
     }
-   }
 }

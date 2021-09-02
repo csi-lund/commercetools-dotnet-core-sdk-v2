@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
 {
-   public class ByProjectKeyCustomerGroupsTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyCustomerGroupsTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Get",
                    "/test_projectKey/customer-groups",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "Post",
                    "/test_projectKey/customer-groups?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .CustomerGroups()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.CustomerGroups
                    "/test_projectKey/customer-groups",
                }
        };
+        }
     }
-   }
 }

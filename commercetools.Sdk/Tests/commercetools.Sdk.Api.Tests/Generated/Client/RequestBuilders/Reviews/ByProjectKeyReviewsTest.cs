@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
 {
-   public class ByProjectKeyReviewsTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyReviewsTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -29,7 +31,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -39,7 +41,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?sort=sort",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -49,7 +51,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -59,7 +61,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -69,7 +71,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?withTotal=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -79,7 +81,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?where=where",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -89,7 +91,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews?var.varName=var.varName",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -98,7 +100,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Get",
                    "/test_projectKey/reviews",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -108,7 +110,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "Post",
                    "/test_projectKey/reviews?expand=expand",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Reviews()
@@ -118,6 +120,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Reviews
                    "/test_projectKey/reviews",
                }
        };
+        }
     }
-   }
 }

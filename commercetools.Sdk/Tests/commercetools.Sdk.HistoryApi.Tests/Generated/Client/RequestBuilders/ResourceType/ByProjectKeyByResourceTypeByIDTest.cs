@@ -8,18 +8,20 @@ using Xunit;
 
 namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
 {
-   public class ByProjectKeyByResourceTypeByIDTest:RequestBuilderParentTests 
-   { 
-       [Theory]
-       [MemberData(nameof(GetData))]
-       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
-           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-       }
+    public class ByProjectKeyByResourceTypeByIDTest : RequestBuilderParentTests
+    {
+        [Theory]
+        [MemberData(nameof(GetData))]
+        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
+        {
+            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+        }
 
-       public static IEnumerable<object[]> GetData() {
-       return new List<object[]> {
-               new Object[] {           
+        public static IEnumerable<object[]> GetData()
+        {
+            return new List<object[]> {
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -30,7 +32,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?date.from=date.from",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -41,7 +43,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?date.to=date.to",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -52,7 +54,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?limit=7",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -63,7 +65,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?offset=3",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -74,7 +76,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?userId=userId",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -85,7 +87,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?type=type",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -96,7 +98,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?clientId=clientId",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -107,7 +109,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?source=source",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -118,7 +120,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?changes=changes",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -129,7 +131,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?customerId=customerId",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -140,7 +142,7 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "Get",
                    "/test_projectKey/test_resourceType/test_ID?expand=true",
                },
-               new Object[] {           
+               new Object[] {
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .WithResourceTypeValue("test_resourceType")
@@ -151,6 +153,6 @@ namespace commercetools.HistoryApi.Tests.Client.RequestBuilders.ResourceType
                    "/test_projectKey/test_resourceType/test_ID",
                }
        };
+        }
     }
-   }
 }
