@@ -8,20 +8,18 @@ using Xunit;
 
 namespace commercetools.Api.Tests.Client.RequestBuilders.Products
 {
-    public class ByProjectKeyProductsTest : RequestBuilderParentTests
-    {
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
-        {
-            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-        }
+   public class ByProjectKeyProductsTest:RequestBuilderParentTests 
+   { 
+       [Theory]
+       [MemberData(nameof(GetData))]
+       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
+           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+       }
 
-        public static IEnumerable<object[]> GetData()
-        {
-            return new List<object[]> {
-               new Object[] {
+       public static IEnumerable<object[]> GetData() {
+       return new List<object[]> {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -31,7 +29,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?priceCurrency=priceCurrency",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -41,7 +39,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?priceCountry=priceCountry",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -51,7 +49,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?priceCustomerGroup=priceCustomerGroup",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -61,7 +59,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?priceChannel=priceChannel",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -71,7 +69,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?localeProjection=localeProjection",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -81,7 +79,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?storeProjection=storeProjection",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -91,7 +89,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?expand=expand",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -101,7 +99,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?sort=sort",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -111,7 +109,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?limit=7",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -121,7 +119,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?offset=3",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -131,7 +129,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?withTotal=true",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -141,7 +139,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?where=where",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -151,7 +149,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products?var.varName=var.varName",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -160,7 +158,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Get",
                    "/test_projectKey/products",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -170,7 +168,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?priceCurrency=priceCurrency",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -180,7 +178,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?priceCountry=priceCountry",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -190,7 +188,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?priceCustomerGroup=priceCustomerGroup",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -200,7 +198,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?priceChannel=priceChannel",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -210,7 +208,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?localeProjection=localeProjection",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -220,7 +218,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?storeProjection=storeProjection",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -230,7 +228,7 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "Post",
                    "/test_projectKey/products?expand=expand",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKey("test_projectKey")
                    .Products()
@@ -240,6 +238,6 @@ namespace commercetools.Api.Tests.Client.RequestBuilders.Products
                    "/test_projectKey/products",
                }
        };
-        }
     }
+   }
 }

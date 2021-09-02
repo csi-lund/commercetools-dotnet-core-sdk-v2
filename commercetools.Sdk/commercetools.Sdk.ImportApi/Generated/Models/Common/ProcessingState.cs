@@ -6,60 +6,73 @@ namespace commercetools.ImportApi.Models.Common
 {
     public enum ProcessingState
     {
-        [Description("ValidationFailed")]
+        [Description("processing")]
+        Processing,
+        
+        [Description("validationFailed")]
         ValidationFailed,
-
-        [Description("Unresolved")]
+        
+        [Description("unresolved")]
         Unresolved,
-
-        [Description("WaitForMasterVariant")]
+        
+        [Description("waitForMasterVariant")]
         WaitForMasterVariant,
-
-        [Description("Imported")]
+        
+        [Description("imported")]
         Imported,
-
-        [Description("Rejected")]
+        
+        [Description("rejected")]
         Rejected
     }
+
     public class ProcessingStateWrapper : IProcessingState
     {
         public string JsonName { get; internal set; }
         public ProcessingState? Value { get; internal set; }
+        public override string ToString()
+        {
+            return JsonName;
+        }
     }
+
     [EnumInterfaceCreator(typeof(IProcessingState), "FindEnum")]
     public interface IProcessingState : IJsonName
     {
-        public static IProcessingState ValidationFailed = new ProcessingStateWrapper
-        { Value = ProcessingState.ValidationFailed, JsonName = "ValidationFailed" };
+         public static IProcessingState Processing = new ProcessingStateWrapper
+             {Value = ProcessingState.Processing, JsonName = "processing"}; 
+         
+         public static IProcessingState ValidationFailed = new ProcessingStateWrapper
+             {Value = ProcessingState.ValidationFailed, JsonName = "validationFailed"}; 
+         
+         public static IProcessingState Unresolved = new ProcessingStateWrapper
+             {Value = ProcessingState.Unresolved, JsonName = "unresolved"}; 
+         
+         public static IProcessingState WaitForMasterVariant = new ProcessingStateWrapper
+             {Value = ProcessingState.WaitForMasterVariant, JsonName = "waitForMasterVariant"}; 
+         
+         public static IProcessingState Imported = new ProcessingStateWrapper
+             {Value = ProcessingState.Imported, JsonName = "imported"}; 
+         
+         public static IProcessingState Rejected = new ProcessingStateWrapper
+             {Value = ProcessingState.Rejected, JsonName = "rejected"}; 
 
-        public static IProcessingState Unresolved = new ProcessingStateWrapper
-        { Value = ProcessingState.Unresolved, JsonName = "Unresolved" };
-
-        public static IProcessingState WaitForMasterVariant = new ProcessingStateWrapper
-        { Value = ProcessingState.WaitForMasterVariant, JsonName = "WaitForMasterVariant" };
-
-        public static IProcessingState Imported = new ProcessingStateWrapper
-        { Value = ProcessingState.Imported, JsonName = "Imported" };
-
-        public static IProcessingState Rejected = new ProcessingStateWrapper
-        { Value = ProcessingState.Rejected, JsonName = "Rejected" };
-
-        ProcessingState? Value { get; }
-
-        static IProcessingState[] Values()
-        {
-            return new[]
-            {
-                ValidationFailed ,
-                Unresolved ,
-                WaitForMasterVariant ,
-                Imported ,
-                Rejected
-           };
-        }
-        static IProcessingState FindEnum(string value)
-        {
-            return Values().FirstOrDefault(origin => origin.JsonName == value) ?? new ProcessingStateWrapper() { JsonName = value };
-        }
+         ProcessingState? Value { get; }
+        
+         static IProcessingState[] Values()
+         {
+             return new[]
+             {
+                 Processing ,
+                 ValidationFailed ,
+                 Unresolved ,
+                 WaitForMasterVariant ,
+                 Imported ,
+                 Rejected 
+             };
+         }
+         static IProcessingState FindEnum(string value)
+         {
+             return Values().FirstOrDefault(origin => origin.JsonName == value) ?? new ProcessingStateWrapper() {JsonName = value};
+         }
     }
 }

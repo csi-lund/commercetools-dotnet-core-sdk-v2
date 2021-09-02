@@ -8,20 +8,18 @@ using Xunit;
 
 namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
 {
-    public class ByProjectKeyImportSinksTest : RequestBuilderParentTests
-    {
-        [Theory]
-        [MemberData(nameof(GetData))]
-        public void WithMethods(HttpRequestMessage request, string httpMethod, string uri)
-        {
-            Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
-            Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
-        }
+   public class ByProjectKeyImportSinksTest:RequestBuilderParentTests 
+   { 
+       [Theory]
+       [MemberData(nameof(GetData))]
+       public void WithMethods(HttpRequestMessage request, string httpMethod, string uri) {
+           Assert.Equal(httpMethod.ToLower(), request.Method.Method.ToLower());
+           Assert.Equal(uri.ToLower(), request.RequestUri.ToString().ToLower());
+       }
 
-        public static IEnumerable<object[]> GetData()
-        {
-            return new List<object[]> {
-               new Object[] {
+       public static IEnumerable<object[]> GetData() {
+       return new List<object[]> {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .ImportSinks()
@@ -30,7 +28,7 @@ namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
                    "Post",
                    "/test_projectKey/import-sinks",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .ImportSinks()
@@ -40,7 +38,7 @@ namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
                    "Get",
                    "/test_projectKey/import-sinks?limit=0.26748633",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .ImportSinks()
@@ -50,7 +48,7 @@ namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
                    "Get",
                    "/test_projectKey/import-sinks?offset=0.7475848",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .ImportSinks()
@@ -60,7 +58,7 @@ namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
                    "Get",
                    "/test_projectKey/import-sinks?sort=sort",
                },
-               new Object[] {
+               new Object[] {           
                    ApiRoot
                    .WithProjectKeyValue("test_projectKey")
                    .ImportSinks()
@@ -70,6 +68,6 @@ namespace commercetools.ImportApi.Tests.Client.RequestBuilders.ImportSinks
                    "/test_projectKey/import-sinks",
                }
        };
-        }
     }
+   }
 }
