@@ -21,14 +21,8 @@ namespace commercetools.Sdk.Api.Models.Common
         [Description("customer")]
         Customer,
 
-        [Description("customer-email-token")]
-        CustomerEmailToken,
-
         [Description("customer-group")]
         CustomerGroup,
-
-        [Description("customer-password-token")]
-        CustomerPasswordToken,
 
         [Description("discount-code")]
         DiscountCode,
@@ -119,14 +113,8 @@ namespace commercetools.Sdk.Api.Models.Common
         public static IReferenceTypeId Customer = new ReferenceTypeIdWrapper
         { Value = ReferenceTypeId.Customer, JsonName = "customer" };
 
-        public static IReferenceTypeId CustomerEmailToken = new ReferenceTypeIdWrapper
-        { Value = ReferenceTypeId.CustomerEmailToken, JsonName = "customer-email-token" };
-
         public static IReferenceTypeId CustomerGroup = new ReferenceTypeIdWrapper
         { Value = ReferenceTypeId.CustomerGroup, JsonName = "customer-group" };
-
-        public static IReferenceTypeId CustomerPasswordToken = new ReferenceTypeIdWrapper
-        { Value = ReferenceTypeId.CustomerPasswordToken, JsonName = "customer-password-token" };
 
         public static IReferenceTypeId DiscountCode = new ReferenceTypeIdWrapper
         { Value = ReferenceTypeId.DiscountCode, JsonName = "discount-code" };
@@ -199,9 +187,7 @@ namespace commercetools.Sdk.Api.Models.Common
                  Category ,
                  Channel ,
                  Customer ,
-                 CustomerEmailToken ,
                  CustomerGroup ,
-                 CustomerPasswordToken ,
                  DiscountCode ,
                  Extension ,
                  InventoryEntry ,
