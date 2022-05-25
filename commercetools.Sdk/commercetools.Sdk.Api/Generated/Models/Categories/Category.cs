@@ -22,7 +22,7 @@ namespace commercetools.Sdk.Api.Models.Categories
 
         public ILocalizedString Name { get; set; }
 
-        public ILocalizedString Slug { get; set; }
+        public ISlug Slug { get; set; }
 
         public ILocalizedString Description { get; set; }
 

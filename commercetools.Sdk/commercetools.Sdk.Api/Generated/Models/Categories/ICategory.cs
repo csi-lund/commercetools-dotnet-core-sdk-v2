@@ -24,7 +24,7 @@ namespace commercetools.Sdk.Api.Models.Categories
 
         ILocalizedString Name { get; set; }
 
-        ILocalizedString Slug { get; set; }
+        ISlug Slug { get; set; }
 
         ILocalizedString Description { get; set; }
 
