@@ -1,14 +1,14 @@
-using System.Collections.Generic;
 using commercetools.Base.CustomAttributes;
 
 
 namespace commercetools.Sdk.Api.Models.ProductSelections
 {
-    [DeserializeAs(typeof(commercetools.Sdk.Api.Models.ProductSelections.ProductVariantSelection))]
+    [TypeDiscriminator(nameof(Type))]
+    [DefaultTypeDiscriminator(typeof(commercetools.Sdk.Api.Models.ProductSelections.ProductVariantSelection))]
+    [SubTypeDiscriminator("exclusion", typeof(commercetools.Sdk.Api.Models.ProductSelections.ProductVariantSelectionExclusion))]
+    [SubTypeDiscriminator("inclusion", typeof(commercetools.Sdk.Api.Models.ProductSelections.ProductVariantSelectionInclusion))]
     public partial interface IProductVariantSelection
     {
-        string Type { get; set; }
-
-        List<string> Skus { get; set; }
+        IProductVariantSelectionTypeEnum Type { get; set; }
     }
 }
